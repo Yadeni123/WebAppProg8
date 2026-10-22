@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Math Computation Fetch Client</title>
+</head>
+<body>
+
+    <h1>Yadeni Eba uses a fetch request</h1>
+
+    <p>Enter values for x and y to calculate using the compute server:</p>
+
+    <label for="x">Value for x:</label>
+    <input type="number" id="x" value="10"><br><br>
+
+    <label for="y">Value for y:</label>
+    <input type="number" id="y" value="11"><br><br>
+
+    <button onclick="makeFetchRequest()">Submit Fetch Request</button>
+
+    <h3>Server Response:</h3>
+    <div id="result">Response will appear here...</div>
+
+    <script>
+        async function makeFetchRequest() {
+            const xVal = document.getElementById('x').value;
+            const yVal = document.getElementById('y').value;
+
+            const response = await fetch(`http://127.0.0.1:3001/?x=${xVal}&y=${yVal}`);
+            const data = await response.text();
+
+            document.getElementById('result').innerText = data;
+        }
+    </script>
+</body>
+</html>
